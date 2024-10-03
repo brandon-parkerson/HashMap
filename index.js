@@ -49,5 +49,21 @@ function HashMap() {
 
       return null;
     },
+    has(key) {
+      const index = this.hash(key);
+      const bucket = this.buckets[index];
+
+      if (!bucket) {
+        return false;
+      }
+
+      for (let i = 0; i < bucket.length; i++) {
+        const [existingKey, value] = bucket[i];
+        if (existingKey === key) {
+          return true;
+        }
+      }
+      return false;
+    },
   };
 }
